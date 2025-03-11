@@ -39,11 +39,11 @@ EarthPlayground >> drawFirstValidCountryFromSVG [
    allPaths := xmlDoc nodes first nodes select: [:n | 
        (n isKindOf: XMLElement) and: [(n attributes includesKey: 'd')]].
 
-   allPaths isEmpty ifTrue: [^ Transcript show: 'Aucun pays valide trouvé dans le fichier SVG'; cr].
+   allPaths isEmpty ifTrue: [^ Transcript show: 'No valid country found in the SVG file'; cr].
 
    firstValidPath := allPaths first.
    country := EarthMapCountry new fromXML: firstValidPath.
-   country ifNil: [^ Transcript show: 'Le pays n’a pas pu être généré'; cr].
+   country ifNil: [^ Transcript show: 'The country could not be generated'; cr].
 
    c := RSCanvas new.
    c addShape: country asRSShape.
@@ -56,7 +56,7 @@ EarthPlayground >> drawRealCountryFromSVG [
    | xmlDoc firstCountry country c |
    
    xmlDoc := (XMLDOMParser parse: ('world.svg' asFileReference readStream contents)) document.
-   firstCountry := xmlDoc nodes first nodes second.  "On prend un pays du fichier"
+   firstCountry := xmlDoc nodes first nodes second. 
    
    country := EarthMapCountry new fromXML: firstCountry.
 
@@ -85,7 +85,7 @@ EarthPlayground >> loadFirstCountryFromSVG [
    | xmlDoc firstCountry country c |
    
    xmlDoc := (XMLDOMParser parse: ('world.svg' asFileReference readStream contents)) document.
-   firstCountry := xmlDoc nodes first nodes second.  "prend un pays (le 1er élément)"
+   firstCountry := xmlDoc nodes first nodes second. 
    
    country := EarthMapCountry new fromXML: firstCountry.
 
